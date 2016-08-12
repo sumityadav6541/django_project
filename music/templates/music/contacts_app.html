@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple Contacts storing application</title>
+</head>
+<body>
+	<p><strong>Simple Contacts storing App</strong></p>
+	<div>
+		First Name : <input type="text" id ="first_name">
+		Last Name : <input type="text" id="last_name">
+		Email : <input type="text" id="email">
+		<br><br>
+		<input type="button" name="submit" value="Add Contact" onclick="addContent()">
+	</div>
+
+	<br>
+	
+	<div>
+		<p><strong>Available Contacts:</strong></p>
+		<div id ="info">
+			
+		</div>
+		<!--table id="info">
+			<tr>
+				<th> # </th>
+			    <th>First Name</th>
+			    <th>Last Name</th>
+			    <th>Email</th>
+  			</tr>
+  			<!--tr>
+  				<td>1</td>
+			    <td>First Name</td>
+			    <td>Last Name</td>
+			    <td>Email</td>
+  			</tr-->
+		</table>
+	</div>
+	<script>
+		app_data = [["John","Doe","johndoe@example.com"],["John","Doe","johndoe@example.com"],["John","Doe","johndoe@example.com"],["John","Doe","johndoe@example.com"]];
+		
+
+		function refreshTable(){
+			var table ='<table> <tr><th> # </th> <th>First Name</th> <th>Last Name</th> <th>Email</th></tr>';
+			for(var i=0; i<app_data.length; i++){
+				table += '<tr><td>'+(i+1)+'</td><td>'+app_data[i][0]+'</td><td>'+ app_data[i][1] +'</td><td>'+app_data[i][2]+'</td></tr>';
+			}
+			table += '</table>'
+			document.getElementById("info").innerHTML = table;
+		}
+
+		function addContent(){
+			var fname = document.getElementById("first_name").value;
+			var lname = document.getElementById("last_name").value;
+			var email = document.getElementById("email").value;
+			
+			if(fname=="" || lname=="" || email=="")
+				return alert("all fields must be filled !!!!");
+			
+			app_data[app_data.length] = [fname, lname, email];
+			refreshTable();
+		}
+
+		refreshTable();
+	</script>
+</body>
+</html>
